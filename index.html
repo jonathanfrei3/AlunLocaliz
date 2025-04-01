@@ -1,0 +1,690 @@
+<<!DOCTYPE html>
+<html>
+<head>
+    <title>Pesquisa de Nome</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: url('https://4.bp.blogspot.com/-DRl-XhIPXRI/UWGI9VmHU_I/AAAAAAAAAdc/Lt4YBwFkjic/s1600/pequeno_principe_by_ferigato1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #f8f1e5;
+            padding: 20px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+
+
+
+
+
+             #container {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 400px;
+        }
+        h2 {
+            font-family: 'Arial', cursive;
+            font-size: 32px;
+            color: #e67e22;
+        }
+        input {
+            padding: 12px;
+            width: 100%;
+            margin-bottom: 10px;
+            border: 2px solid #e67e22;
+            border-radius: 10px;
+            font-size: 16px;
+            text-align: center;
+        }
+        button {
+            padding: 12px 20px;
+            background-color: #e67e22;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #d35400;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 350px;
+            margin: 15% auto;
+            text-align: center;
+            color: black;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            transform: scale(0.7);
+            transition: transform 0.5s ease-in-out;
+        }
+        .modal.show {
+            opacity: 1;
+        }
+        .modal-content.show {
+            transform: scale(1);
+        }
+        .close {
+            color: red;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .modal img {
+            width: 100px;
+            margin-bottom: 10px;
+        }
+    </style>
+
+
+    <script>
+        function pesquisarNome() {
+            var nomeDigitado = document.getElementById("nome").value.toUpperCase();
+            var listaNomes = {
+
+                
+                // Turma IV-A
+                "ÁGATHA ARAUJO APOLIANO": { turma: "IV-A", professora: "Luci Pinheiro",  sala: "03", link: "https://chat.whatsapp.com/Le2nZWk1jz12IjPpc5xR9r" }
+                ,
+                "ANTÔNIO LUÍZ NUNES DE SOUSA": { turma: "IV-A", professora: "Luci Pinheiro", sala: "03", link: "https://chat.whatsapp.com/Le2nZWk1jz12IjPpc5xR9r" }
+                ,
+                "BRAYAN HENRIQUE COELHO LAMEIRA": { turma: "IV-A", professora: "Luci Pinheiro", sala: "03", link: "https://chat.whatsapp.com/Le2nZWk1jz12IjPpc5xR9r" }
+                ,
+                "EDUARDO DO NASCIMENTO FREITAS": { turma: "IV-A", professora: "Luci Pinheiro", sala: "03", link: "https://chat.whatsapp.com/Le2nZWk1jz12IjPpc5xR9r" }
+                ,
+                "ELOÁ TEIXEIRA BARROS": { turma: "IV-A", professora: "Luci Pinheiro", sala: "03", link: "https://chat.whatsapp.com/Le2nZWk1jz12IjPpc5xR9r" }
+                ,
+                 "EMANUELLE VITÓRIA DUARTE MACIEL": { turma: "IV-A", professora: "Luci Pinheiro", sala: "03", link: "https://chat.whatsapp.com/Le2nZWk1jz12IjPpc5xR9r" }
+                 ,
+                  "EMILLY DA SILVA GUEDES": { turma: "IV-A", professora: "Luci Pinheiro", sala: "03", link: "https://chat.whatsapp.com/Le2nZWk1jz12IjPpc5xR9r" }
+                  ,
+                   "GLENDA FRÓZ SANTOS": { turma: "IV-A", professora: "Luci Pinheiro", sala: "03", link: "https://chat.whatsapp.com/Le2nZWk1jz12IjPpc5xR9r" }
+                   ,
+                    "HELENA DA COSTA VELOSO": { turma: "IV-A", professora: "Luci Pinheiro", sala: "03", link: "https://chat.whatsapp.com/Le2nZWk1jz12IjPpc5xR9r" }
+                    ,
+                    "JACOB GABRIEL DELGADO GONZALEZ": { turma: "IV-A", professora: "Luci Pinheiro", sala: "03", link: "https://chat.whatsapp.com/Le2nZWk1jz12IjPpc5xR9r" },
+                    "JAIRO FIGUEIRA ASSUNÇÃO": { turma: "IV-A", professora: "Luci Pinheiro", sala: "03", link: "https://chat.whatsapp.com/Le2nZWk1jz12IjPpc5xR9r" }
+                    ,
+                    "JOÃO GUILHERME BAETA TEIXEIRA": { turma: "IV-A", professora: "Luci Pinheiro", sala: "03", link: "https://chat.whatsapp.com/Le2nZWk1jz12IjPpc5xR9r" },
+                    "JONATHAN ALEXANDER SALAZAR BARRETO": { turma: "IV-A", professora: "Luci Pinheiro", sala: "03", link: "https://chat.whatsapp.com/Le2nZWk1jz12IjPpc5xR9r" },
+                    "KALINNE VITÓRIA CAVALCANTI DA SILVA": { turma: "IV-A", professora: "Luci Pinheiro", sala: "03", link: "https://chat.whatsapp.com/Le2nZWk1jz12IjPpc5xR9r" },
+                    "LARA NICOLY FERREIRA DE OLIVEIRA": { turma: "IV-A", professora: "Luci Pinheiro", sala: "03", link: "https://chat.whatsapp.com/Le2nZWk1jz12IjPpc5xR9r" },
+                    "MARIA HELENA PADILHA RAMOS": { turma: "IV-A", professora: "Luci Pinheiro", sala: "03", link: "https://chat.whatsapp.com/Le2nZWk1jz12IjPpc5xR9r" },
+                    "MARIA HELENA SANTOS PEREIRA": { turma: "IV-A", professora: "Luci Pinheiro", sala: "03", link: "https://chat.whatsapp.com/Le2nZWk1jz12IjPpc5xR9r" },
+                     "NOAH BARBOSA SILVA": { turma: "IV-A", professora: "Luci Pinheiro", sala: "03", link: "https://chat.whatsapp.com/Le2nZWk1jz12IjPpc5xR9r" }
+                     ,
+                      "TIAGO MONTEIRO FARIAS": { turma: "IV-A", professora: "Luci Pinheiro", sala: "03", link: "https://chat.whatsapp.com/Le2nZWk1jz12IjPpc5xR9r" }
+                      ,
+                       "YASMIN GOMES DA SILVA": { turma: "IV-A", professora: "Luci Pinheiro", sala: "03", link: "https://chat.whatsapp.com/Le2nZWk1jz12IjPpc5xR9r" }
+                       ,
+                        "ELLOÁ CECÍLIA DA SILVA LIMA": { turma: "IV-A", professora: "Luci Pinheiro", sala: "03", link: "https://chat.whatsapp.com/Le2nZWk1jz12IjPpc5xR9r" }
+                        ,
+
+                
+
+
+                // Turma IV-B
+                "AARIANLYS GABRIELA MONTANO PINTO": { turma: "IV-B", professora: "Luciana Nogueira", sala: "04", link: "https://chat.whatsapp.com/E2MRFP4BiqOFrJxhQMFoPq" },
+
+                "ANA LUISA SANTOS ALVES": { turma: "IV-B", professora: "Luciana Nogueira", sala: "04", link: "https://chat.whatsapp.com/E2MRFP4BiqOFrJxhQMFoPq" },
+
+                "ANGECELYS SOFIA TORREZ BORJAS": { turma: "IV-B", professora: "Luciana Nogueira", sala: "04", link: "https://chat.whatsapp.com/E2MRFP4BiqOFrJxhQMFoPq" },
+
+                "ANTHONY GABRIEL CONCEIÇÃO SANTOS": { turma: "IV-B", professora: "Luciana Nogueira", sala: "04", link: "https://chat.whatsapp.com/E2MRFP4BiqOFrJxhQMFoPq" },
+
+                "BENICIO DE FRANÇA LARA": { turma: "IV-B", professora: "Luciana Nogueira", sala: "04", link: "https://chat.whatsapp.com/E2MRFP4BiqOFrJxhQMFoPq" },
+
+                "CHRISTOPHER RAMOS SANTOS": { turma: "IV-B", professora: "Luciana Nogueira", sala: "04", link: "https://chat.whatsapp.com/E2MRFP4BiqOFrJxhQMFoPq" },
+
+                "EMANUELLE CARVALHO SOUSA": { turma: "IV-B", professora: "Luciana Nogueira", sala: "04", link: "https://chat.whatsapp.com/E2MRFP4BiqOFrJxhQMFoPq" },
+
+                "HAGATA LORENA DIAS AMARAL": { turma: "IV-B", professora: "Luciana Nogueira", sala: "04", link: "https://chat.whatsapp.com/E2MRFP4BiqOFrJxhQMFoPq" },
+
+                "HENRIQUE FRANCISCO DE OLIVEIRA": { turma: "IV-B", professora: "Luciana Nogueira", sala: "04", link: "https://chat.whatsapp.com/E2MRFP4BiqOFrJxhQMFoPq" },
+
+                "ÍTALO YARLEN MIRANDA DE SOUSA": { turma: "IV-B", professora: "Luciana Nogueira", sala: "04", link: "https://chat.whatsapp.com/E2MRFP4BiqOFrJxhQMFoPq" },
+
+                "KYRAH LUARA SANTOS ARAUJO": { turma: "IV-B", professora: "Luciana Nogueira", sala: "04", link: "https://chat.whatsapp.com/E2MRFP4BiqOFrJxhQMFoPq" },
+
+                "LARA DA SILVA CARVALHO": { turma: "IV-B", professora: "Luciana Nogueira", sala: "04", link: "https://chat.whatsapp.com/E2MRFP4BiqOFrJxhQMFoPq" },
+
+                "LIA ELOAH DIAS VINHAS": { turma: "IV-B", professora: "Luciana Nogueira", sala: "04", link: "https://chat.whatsapp.com/E2MRFP4BiqOFrJxhQMFoPq" },
+
+                "LUNA CRISTINE SANTIAGO CALISTO": { turma: "IV-B", professora: "Luciana Nogueira", sala: "04", link: "https://chat.whatsapp.com/E2MRFP4BiqOFrJxhQMFoPq" },
+
+                "MAITÊ PAIVA BESSA": { turma: "IV-B", professora: "Luciana Nogueira", sala: "04", link: "https://chat.whatsapp.com/E2MRFP4BiqOFrJxhQMFoPq" },
+
+                "MARCOS COSTA CARRERA": { turma: "IV-B", professora: "Luciana Nogueira", sala: "04", link: "https://chat.whatsapp.com/E2MRFP4BiqOFrJxhQMFoPq" },
+
+                "MARIA EMANUELLY FERREIRA MORAES": { turma: "IV-B", professora: "Luciana Nogueira", sala: "04", link: "https://chat.whatsapp.com/E2MRFP4BiqOFrJxhQMFoPq" },
+
+                "MIRELA SOPHIA SOUSA SANTOS": { turma: "IV-B", professora: "Luciana Nogueira", sala: "04", link: "https://chat.whatsapp.com/E2MRFP4BiqOFrJxhQMFoPq" },
+
+                "NIKLAUS SANTOS TORRES": { turma: "IV-B", professora: "Luciana Nogueira", sala: "04", link: "https://chat.whatsapp.com/E2MRFP4BiqOFrJxhQMFoPq" },
+
+                "VALENTIN MIGUEL CAVALCANTE GONÇALVES": { turma: "IV-B", professora: "Luciana Nogueira", sala: "04", link: "https://chat.whatsapp.com/E2MRFP4BiqOFrJxhQMFoPq" },
+
+                "EVELLYN VITORIA FERREIRA SOARES": { turma: "IV-B", professora: "Luciana Nogueira", sala: "04", link: "https://chat.whatsapp.com/E2MRFP4BiqOFrJxhQMFoPq" },
+
+                "MATHEUS HENRIQUE ALVES DA SILVA": { turma: "IV-B", professora: "Luciana Nogueira", sala: "04", link: "https://chat.whatsapp.com/E2MRFP4BiqOFrJxhQMFoPq" },
+
+
+
+
+                // Turma IV-C
+                "ADRIAN MICAEL LOPES PEREIRA": { turma: "IV-C", professora: "Regiane Patricia", sala: "07", link: "https://chat.whatsapp.com/EKCq8lB0PsDCLw4IoFB64K" },
+
+                "ANNA LUISA DE SOUZA PEREIRA": { turma: "IV-C", professora: "Regiane Patricia", sala: "07", link: "https://chat.whatsapp.com/EKCq8lB0PsDCLw4IoFB64K" },
+
+                "ANTHONELLA CRYSTINE VARELA GONÇALVES": { turma: "IV-C", professora: "Regiane Patricia", sala: "07", link: "https://chat.whatsapp.com/EKCq8lB0PsDCLw4IoFB64K" },
+
+                "ANTHONY MIGUEL BATISTA COSTA": { turma: "IV-C", professora: "Regiane Patricia", sala: "07", link: "https://chat.whatsapp.com/EKCq8lB0PsDCLw4IoFB64K" },
+
+                "AURORA IASMYN DA SILVA": { turma: "IV-C", professora: "Regiane Patricia", sala: "07", link: "https://chat.whatsapp.com/EKCq8lB0PsDCLw4IoFB64K" },
+
+                "CALEB MIGUEL RÊGO NUNES": { turma: "IV-C", professora: "Regiane Patricia", sala: "07", link: "https://chat.whatsapp.com/EKCq8lB0PsDCLw4IoFB64K" },
+
+                "CARMEN GRAUDO SOUSA": { turma: "IV-C", professora: "Regiane Patricia", sala: "07", link: "https://chat.whatsapp.com/EKCq8lB0PsDCLw4IoFB64K" },
+
+                "ISAAC PETERS MIELKE": { turma: "IV-C", professora: "Regiane Patricia", sala: "07", link: "https://chat.whatsapp.com/EKCq8lB0PsDCLw4IoFB64K" },
+
+                "IVY SORAIA DO SANTOS LEAL": { turma: "IV-C", professora: "Regiane Patricia", sala: "07", link: "https://chat.whatsapp.com/EKCq8lB0PsDCLw4IoFB64K" },
+
+                "JOÃO VITOR MONTEIRO DE BRITO": { turma: "IV-C", professora: "Regiane Patricia", sala: "07", link: "https://chat.whatsapp.com/EKCq8lB0PsDCLw4IoFB64K" },
+
+                "KYARA LOUISE PINHEIRO SERRA": { turma: "IV-C", professora: "Regiane Patricia", sala: "07", link: "https://chat.whatsapp.com/EKCq8lB0PsDCLw4IoFB64K" },
+
+                "LUIS OTAVIO DA SILVA RODRIGUES": { turma: "IV-C", professora: "Regiane Patricia", sala: "07", link: "https://chat.whatsapp.com/EKCq8lB0PsDCLw4IoFB64K" },
+
+                "MARIA HELENA RIBEIRO SAMPAIO": { turma: "IV-C", professora: "Regiane Patricia", sala: "07", link: "https://chat.whatsapp.com/EKCq8lB0PsDCLw4IoFB64K" },
+
+                "NYHOLLBERT YUBER ALBERTO MILLAN CARVAJAL": { turma: "IV-C", professora: "Regiane Patricia", sala: "07", link: "https://chat.whatsapp.com/EKCq8lB0PsDCLw4IoFB64K" },
+
+                "PEDRO HENRIQUE ARAGÃO DELMONDES": { turma: "IV-C", professora: "Regiane Patricia", sala: "07", link: "https://chat.whatsapp.com/EKCq8lB0PsDCLw4IoFB64K" },
+
+                "SAMUEL VICTOR PINTO PESSOA": { turma: "IV-C", professora: "Regiane Patricia", sala: "07", link: "https://chat.whatsapp.com/EKCq8lB0PsDCLw4IoFB64K" },
+
+                 "SARAH DALA COSTA": { turma: "IV-C", professora: "Regiane Patricia", sala: "07", link: "https://chat.whatsapp.com/EKCq8lB0PsDCLw4IoFB64K" },
+
+                 "SAULLO DOS SANTOS LOUREIRO": { turma: "IV-C", professora: "Regiane Patricia", sala: "07", link: "https://chat.whatsapp.com/EKCq8lB0PsDCLw4IoFB64K" },
+
+                 "STEFHANY LOHANY SILVA CRUZ": { turma: "IV-C", professora: "Regiane Patricia", sala: "07", link: "https://chat.whatsapp.com/EKCq8lB0PsDCLw4IoFB64K" },
+
+                 "THOMAS VALENTIM SILVA TEIXEIRA": { turma: "IV-C", professora: "Regiane Patricia", sala: "07", link: "https://chat.whatsapp.com/EKCq8lB0PsDCLw4IoFB64K" },
+
+                 "WESLLEY GABRIEL ARAUJO SILVA": { turma: "IV-C", professora: "Regiane Patricia", sala: "07", link: "https://chat.whatsapp.com/EKCq8lB0PsDCLw4IoFB64K" },
+
+
+
+
+                 // Turma IV-D
+                "ANA JÚLIA DE OLIVEIRA KAVALEK": { turma: "IV-D", professora: "Francineide da Silva", sala: "08", link: "https://chat.whatsapp.com/LIcvFjf5SGN4APK9KUB0Sj" },
+                "BENJAMIN EDUARDO SILVA DE SOUSA": { turma: "IV-D", professora: "Francineide da Silva", sala: "08", link: "https://chat.whatsapp.com/LIcvFjf5SGN4APK9KUB0Sj" },
+                "DEREK JESUS GONZALEZ ALCALA": { turma: "IV-D", professora: "Francineide da Silva", sala: "08", link: "https://chat.whatsapp.com/LIcvFjf5SGN4APK9KUB0Sj" },
+                "ELISIANY SOUSA NUNES": { turma: "IV-D", professora: "Francineide da Silva", sala: "08", link: "https://chat.whatsapp.com/LIcvFjf5SGN4APK9KUB0Sj" },
+                "ENZO SOUSA ALVES": { turma: "IV-D", professora: "Francineide da Silva", sala: "08", link: "https://chat.whatsapp.com/LIcvFjf5SGN4APK9KUB0Sj" },
+                "EVERTON LEZCANO BENITES": { turma: "IV-D", professora: "Francineide da Silva", sala: "08", link: "https://chat.whatsapp.com/LIcvFjf5SGN4APK9KUB0Sj" },
+                "JÉSSICA VITORIA LIMA DA SILVA": { turma: "IV-D", professora: "Francineide da Silva", sala: "08", link: "https://chat.whatsapp.com/LIcvFjf5SGN4APK9KUB0Sj" },
+                "JIREH ANDREINA MARTINEZ ROJAS": { turma: "IV-D", professora: "Francineide da Silva", sala: "08", link: "https://chat.whatsapp.com/LIcvFjf5SGN4APK9KUB0Sj" },
+                "JOAQUIM LIMA KRISTOSCHIK": { turma: "IV-D", professora: "Francineide da Silva", sala: "08", link: "https://chat.whatsapp.com/LIcvFjf5SGN4APK9KUB0Sj" },
+                "JULIA KLIEMANN WOLFART": { turma: "IV-D", professora: "Francineide da Silva", sala: "08", link: "https://chat.whatsapp.com/LIcvFjf5SGN4APK9KUB0Sj" },
+                 "KHEMELLY HELOISA MATOS FREITAS": { turma: "IV-D", professora: "Francineide da Silva", sala: "08", link: "https://chat.whatsapp.com/LIcvFjf5SGN4APK9KUB0Sj" },
+                 "LUNNA SARAH FERREIRA TRINDADE": { turma: "IV-D", professora: "Francineide da Silva", sala: "08", link: "https://chat.whatsapp.com/LIcvFjf5SGN4APK9KUB0Sj" },
+                "MANOELA VITORIA RODRIGUES BUENO": { turma: "IV-D", professora: "Francineide da Silva", sala: "08", link: "https://chat.whatsapp.com/LIcvFjf5SGN4APK9KUB0Sj" },
+                "MELINDA DA SILVA BORGES": { turma: "IV-D", professora: "Francineide da Silva", sala: "08", link: "https://chat.whatsapp.com/LIcvFjf5SGN4APK9KUB0Sj" },
+                "MÉRCIA DIAS CARVALHO": { turma: "IV-D", professora: "Francineide da Silva", sala: "08", link: "https://chat.whatsapp.com/LIcvFjf5SGN4APK9KUB0Sj" },
+                "PEDRO RODRIGUES SANTOS": { turma: "IV-D", professora: "Francineide da Silva", sala: "08", link: "https://chat.whatsapp.com/LIcvFjf5SGN4APK9KUB0Sj" },
+                "RODRIGO DANIEL DE FREITAS SANTOS": { turma: "IV-D", professora: "Francineide da Silva", sala: "08", link: "https://chat.whatsapp.com/LIcvFjf5SGN4APK9KUB0Sj" },
+                "SOPHIA JACINTO BRESSIANI": { turma: "IV-D", professora: "Francineide da Silva", sala: "08", link: "https://chat.whatsapp.com/LIcvFjf5SGN4APK9KUB0Sj" },
+                "WILIAN LEVY LEITE ARAÚJO": { turma: "IV-D", professora: "Francineide da Silva", sala: "08", link: "https://chat.whatsapp.com/LIcvFjf5SGN4APK9KUB0Sj" },
+                "ZAYAN SAMUEL RODRIGUES ALMEIDA": { turma: "IV-D", professora: "Francineide da Silva", sala: "08", link: "https://chat.whatsapp.com/LIcvFjf5SGN4APK9KUB0Sj" },
+                "ARTHUR OLIVEIRA DA SILVA": { turma: "IV-D", professora: "Francineide da Silva", sala: "08", link: "https://chat.whatsapp.com/LIcvFjf5SGN4APK9KUB0Sj" },
+                "PALOMA VITÓRIA MATOS DA SILVA": { turma: "IV-D", professora: "Francineide da Silva", sala: "08", link: "https://chat.whatsapp.com/LIcvFjf5SGN4APK9KUB0Sj" },
+
+                 
+
+
+
+
+
+                // Turma IV-E
+                "ÁGATHA KAUANY MACIEL OLIVEIRA": { turma: "IV-E", professora: "Nilza Guedes", sala: "03", link: "https://chat.whatsapp.com/LmW7TZiCrMb0hI7G4kSY7d" },
+                "ALICE OLIVEIRA BEZERRA": { turma: "IV-E", professora: "Nilza Guedes", sala: "03", link: "https://chat.whatsapp.com/LmW7TZiCrMb0hI7G4kSY7d" },
+                "ARTHUR PIETRO SANTOS DE OLIVEIRA": { turma: "IV-E", professora: "Nilza Guedes", sala: "03", link: "https://chat.whatsapp.com/LmW7TZiCrMb0hI7G4kSY7d" },
+                "DANIEL LEVI SOUSA DE CARVALHO": { turma: "IV-E", professora: "Nilza Guedes", sala: "03", link: "https://chat.whatsapp.com/LmW7TZiCrMb0hI7G4kSY7d" },
+                "ENZO GABRIEL DE ALMEIDA CORREA": { turma: "IV-E", professora: "Nilza Guedes", sala: "03", link: "https://chat.whatsapp.com/LmW7TZiCrMb0hI7G4kSY7d" },
+                "HEITOR HENRIQUE DOURADO SILVA": { turma: "IV-E", professora: "Nilza Guedes", sala: "03", link: "https://chat.whatsapp.com/LmW7TZiCrMb0hI7G4kSY7d" },
+                "HELENA GABRIELA SANTANA DA SILVA": { turma: "IV-E", professora: "Nilza Guedes", sala: "03", link: "https://chat.whatsapp.com/LmW7TZiCrMb0hI7G4kSY7d" },
+                "HELOISA DA SILVA DOS SANTOS": { turma: "IV-E", professora: "Nilza Guedes", sala: "03", link: "https://chat.whatsapp.com/LmW7TZiCrMb0hI7G4kSY7d" },
+                "JAMILLE VITORIA DE ALBUQUERQUE SILVA": { turma: "IV-E", professora: "Nilza Guedes", sala: "03", link: "https://chat.whatsapp.com/LmW7TZiCrMb0hI7G4kSY7d" },
+                "JÔNATAS RODRIGUES CARDOSO": { turma: "IV-E", professora: "Nilza Guedes", sala: "03", link: "https://chat.whatsapp.com/LmW7TZiCrMb0hI7G4kSY7d" },
+                "JORLIANDRIS CLERIETH LÓPEZ DÍAS": { turma: "IV-E", professora: "Nilza Guedes", sala: "03", link: "https://chat.whatsapp.com/LmW7TZiCrMb0hI7G4kSY7d" },
+                "KAYLANY GABRIELY DOS SANTOS CARVALHO": { turma: "IV-E", professora: "Nilza Guedes", sala: "03", link: "https://chat.whatsapp.com/LmW7TZiCrMb0hI7G4kSY7d" },
+                "LAYZA MANUELLA SA DA SILVA": { turma: "IV-E", professora: "Nilza Guedes", sala: "03", link: "https://chat.whatsapp.com/LmW7TZiCrMb0hI7G4kSY7d" },
+                "LORENA GONZAGA CASTRO": { turma: "IV-E", professora: "Nilza Guedes", sala: "03", link: "https://chat.whatsapp.com/LmW7TZiCrMb0hI7G4kSY7d" },
+                "LUKAS GABRIEL FERREIRA CARVALHO": { turma: "IV-E", professora: "Nilza Guedes", sala: "03", link: "https://chat.whatsapp.com/LmW7TZiCrMb0hI7G4kSY7d" },
+                "MADISSON ISABELLA GUZMAN JIMENEZ": { turma: "IV-E", professora: "Nilza Guedes", sala: "03", link: "https://chat.whatsapp.com/LmW7TZiCrMb0hI7G4kSY7d" },
+                "MAISA SILVA DE SOUZA": { turma: "IV-E", professora: "Nilza Guedes", sala: "03", link: "https://chat.whatsapp.com/LmW7TZiCrMb0hI7G4kSY7d" },
+                "NATHANAEL LARA SANTA": { turma: "IV-E", professora: "Nilza Guedes", sala: "03", link: "https://chat.whatsapp.com/LmW7TZiCrMb0hI7G4kSY7d" },
+                "RAVI GOES FRAZÃO DIAS": { turma: "IV-E", professora: "Nilza Guedes", sala: "03", link: "https://chat.whatsapp.com/LmW7TZiCrMb0hI7G4kSY7d" },
+                "RYAN GABRIEL DIAS GOMES": { turma: "IV-E", professora: "Nilza Guedes", sala: "03", link: "https://chat.whatsapp.com/LmW7TZiCrMb0hI7G4kSY7d" },
+                "SEDRICK RODRIGUES DOS REIS": { turma: "IV-E", professora: "Nilza Guedes", sala: "03", link: "https://chat.whatsapp.com/LmW7TZiCrMb0hI7G4kSY7d" },
+                "THALLES RAFAEL DA SILVA ALBUQUERQUE": { turma: "IV-E", professora: "Nilza Guedes", sala: "03", link: "https://chat.whatsapp.com/LmW7TZiCrMb0hI7G4kSY7d" },
+                "VALENTINA TRINDADE LIMA": { turma: "IV-E", professora: "Nilza Guedes", sala: "03", link: "https://chat.whatsapp.com/LmW7TZiCrMb0hI7G4kSY7d" },
+               
+
+
+
+
+
+
+
+
+                // Turma IV-F
+                "ALEF BENJAMIM TRINDADE CARDOSO": { turma: "IV-F", professora: "Aline Maria",sala: "04", link: "https://chat.whatsapp.com/CVYtYrdyvTWEzUzDZlYoQ2" },
+                "ARTHUR OLIVEIRA DA SILVA": { turma: "IV-F", professora: "Aline Maria",sala: "04", link: "https://chat.whatsapp.com/CVYtYrdyvTWEzUzDZlYoQ2" },
+                "AURORA KHALEESI GODOY DE SOUSA": { turma: "IV-F", professora: "Aline Maria",sala: "04", link: "https://chat.whatsapp.com/CVYtYrdyvTWEzUzDZlYoQ2" },
+                "DARLISSON GABRIEL DA SILVA": { turma: "IV-F", professora: "Aline Maria",sala: "04", link: "https://chat.whatsapp.com/CVYtYrdyvTWEzUzDZlYoQ2" },
+                "DERYK WALLAFER FERREIRA DA SILVA": { turma: "IV-F", professora: "Aline Maria",sala: "04", link: "https://chat.whatsapp.com/CVYtYrdyvTWEzUzDZlYoQ2" },
+                "EMILIANO MOISES VASQUEZ JIMENEZ": { turma: "IV-F", professora: "Aline Maria",sala: "04", link: "https://chat.whatsapp.com/CVYtYrdyvTWEzUzDZlYoQ2" },
+                "EMILY KYARA PINHEIRO MACHADO": { turma: "IV-F", professora: "Aline Maria",sala: "04", link: "https://chat.whatsapp.com/CVYtYrdyvTWEzUzDZlYoQ2" },
+                "ENZO GABRIEL ANANIAS SANTANA": { turma: "IV-F", professora: "Aline Maria",sala: "04", link: "https://chat.whatsapp.com/CVYtYrdyvTWEzUzDZlYoQ2" },
+                "HELOISA KAROLLYNE SILVA DOS SANTOS": { turma: "IV-F", professora: "Aline Maria",sala: "04", link: "https://chat.whatsapp.com/CVYtYrdyvTWEzUzDZlYoQ2" },
+                "HIAGO QUEIROZ DE SALES": { turma: "IV-F", professora: "Aline Maria",sala: "04", link: "https://chat.whatsapp.com/CVYtYrdyvTWEzUzDZlYoQ2" },
+                "JOAO LUCAS MORAIS DOS SANTOS": { turma: "IV-F", professora: "Aline Maria",sala: "04", link: "https://chat.whatsapp.com/CVYtYrdyvTWEzUzDZlYoQ2" },
+                "JUANA VALENTINA RAUSSEO RUIZ": { turma: "IV-F", professora: "Aline Maria",sala: "04", link: "https://chat.whatsapp.com/CVYtYrdyvTWEzUzDZlYoQ2" },
+                "JÚLIA DOS REIS CARDOSO": { turma: "IV-F", professora: "Aline Maria",sala: "04", link: "https://chat.whatsapp.com/CVYtYrdyvTWEzUzDZlYoQ2" },
+                "KARLA SOFIA TRIAS RONDON": { turma: "IV-F", professora: "Aline Maria",sala: "04", link: "https://chat.whatsapp.com/CVYtYrdyvTWEzUzDZlYoQ2" },
+                "LUCAS LAYAM DA SILVA BRITO": { turma: "IV-F", professora: "Aline Maria",sala: "04", link: "https://chat.whatsapp.com/CVYtYrdyvTWEzUzDZlYoQ2" },
+                "MAITÊ SILVA SPÍNOLA": { turma: "IV-F", professora: "Aline Maria",sala: "04", link: "https://chat.whatsapp.com/CVYtYrdyvTWEzUzDZlYoQ2" },
+                "MARIA VALENTINA ARAGÃO NEVES": { turma: "IV-F", professora: "Aline Maria",sala: "04", link: "https://chat.whatsapp.com/CVYtYrdyvTWEzUzDZlYoQ2" },
+                "MIGUEL LORENZO DOS SANTOS VIEIRA": { turma: "IV-F", professora: "Aline Maria",sala: "04", link: "https://chat.whatsapp.com/CVYtYrdyvTWEzUzDZlYoQ2" },
+                "NAYURY GABRIELLY DE GÓES DUTRA": { turma: "IV-F", professora: "Aline Maria",sala: "04", link: "https://chat.whatsapp.com/CVYtYrdyvTWEzUzDZlYoQ2" },
+                "TAYLA MANUELLA GUERREIRO DOS SANTOS": { turma: "IV-F", professora: "Aline Maria",sala: "04", link: "https://chat.whatsapp.com/CVYtYrdyvTWEzUzDZlYoQ2" },
+                "VICENTE BALSAN CASTRO CASPRECHEN": { turma: "IV-F", professora: "Aline Maria",sala: "04", link: "https://chat.whatsapp.com/CVYtYrdyvTWEzUzDZlYoQ2" },
+                "YASMIM ESTHER ROCHA SOUSA": { turma: "IV-F", professora: "Aline Maria",sala: "04", link: "https://chat.whatsapp.com/CVYtYrdyvTWEzUzDZlYoQ2" },
+                "ENZO SOUSA ALVES": { turma: "IV-F", professora: "Aline Maria",sala: "04", link: "https://chat.whatsapp.com/CVYtYrdyvTWEzUzDZlYoQ2" },
+                
+           
+
+
+
+
+
+                // Turma IV-G
+                "ÁGATHA KAUANY BORGES DIAS": { turma: "IV-G", professora: "Geisa Pereira",sala: "07", link: "https://chat.whatsapp.com/Do1yMbi5QFSJdM1EjfXJWV" },
+                "ALVARO JOSE JESUS SILVA": { turma: "IV-G", professora: "Geisa Pereira",sala: "07", link: "https://chat.whatsapp.com/Do1yMbi5QFSJdM1EjfXJWV" },
+                "APRIL HABBI VASQUEZ GONZALEZ": { turma: "IV-G", professora: "Geisa Pereira",sala: "07", link: "https://chat.whatsapp.com/Do1yMbi5QFSJdM1EjfXJWV" },
+                "ARTHUR ANTHONY MACIEL SILVA DOS ANJOS": { turma: "IV-G", professora: "Geisa Pereira",sala: "07", link: "https://chat.whatsapp.com/Do1yMbi5QFSJdM1EjfXJWV" },
+                "AYSHA VITORIA SILVA SANTOS": { turma: "IV-G", professora: "Geisa Pereira",sala: "07", link: "https://chat.whatsapp.com/Do1yMbi5QFSJdM1EjfXJWV" },
+                "DAILANYS ZOEMY TORIBIO VARGAS": { turma: "IV-G", professora: "Geisa Pereira",sala: "07", link: "https://chat.whatsapp.com/Do1yMbi5QFSJdM1EjfXJWV" },
+                "ELIZA SILVA DE LIMA": { turma: "IV-G", professora: "Geisa Pereira",sala: "07", link: "https://chat.whatsapp.com/Do1yMbi5QFSJdM1EjfXJWV" },
+                "ELOÍSA DUARTE DOS SANTOS": { turma: "IV-G", professora: "Geisa Pereira",sala: "07", link: "https://chat.whatsapp.com/Do1yMbi5QFSJdM1EjfXJWV" },
+                "EMILLY ISABELLA DA SILVA VILHENA": { turma: "IV-G", professora: "Geisa Pereira",sala: "07", link: "https://chat.whatsapp.com/Do1yMbi5QFSJdM1EjfXJWV" },
+                "HEITOR FELIPE DIAS DA SILVA": { turma: "IV-G", professora: "Geisa Pereira",sala: "07", link: "https://chat.whatsapp.com/Do1yMbi5QFSJdM1EjfXJWV" },
+                "ISAAC CORDEIRO DE LIMA SILVA": { turma: "IV-G", professora: "Geisa Pereira",sala: "07", link: "https://chat.whatsapp.com/Do1yMbi5QFSJdM1EjfXJWV" },
+                "ISRAEL FERNANDO BORGES DA SILVA": { turma: "IV-G", professora: "Geisa Pereira",sala: "07", link: "https://chat.whatsapp.com/Do1yMbi5QFSJdM1EjfXJWV" },
+                "JEISER DANIEL SILVEIRA FLORES": { turma: "IV-G", professora: "Geisa Pereira",sala: "07", link: "https://chat.whatsapp.com/Do1yMbi5QFSJdM1EjfXJWV" },
+                "JOSÉ ARTHUR NASCIMENTO OLIVEIRA": { turma: "IV-G", professora: "Geisa Pereira",sala: "07", link: "https://chat.whatsapp.com/Do1yMbi5QFSJdM1EjfXJWV" },
+                "KEMILLY VITÓRIA FAVACHO MONTEIRO": { turma: "IV-G", professora: "Geisa Pereira",sala: "07", link: "https://chat.whatsapp.com/Do1yMbi5QFSJdM1EjfXJWV" },
+                "KEVIN WILLIAM SOARES ROCHA": { turma: "IV-G", professora: "Geisa Pereira",sala: "07", link: "https://chat.whatsapp.com/Do1yMbi5QFSJdM1EjfXJWV" },
+                "LUIZA LIMA ROCHA": { turma: "IV-G", professora: "Geisa Pereira",sala: "07", link: "https://chat.whatsapp.com/Do1yMbi5QFSJdM1EjfXJWV" },
+                "MARCOS JORGE ASSIS MONTEIRO": { turma: "IV-G", professora: "Geisa Pereira",sala: "07", link: "https://chat.whatsapp.com/Do1yMbi5QFSJdM1EjfXJWV" },
+                "MARIA CECÍLIA LOPES": { turma: "IV-G", professora: "Geisa Pereira",sala: "07", link: "https://chat.whatsapp.com/Do1yMbi5QFSJdM1EjfXJWV" },
+                "MIGUEL HENRIQUE DOS SANTOS SOUSA": { turma: "IV-G", professora: "Geisa Pereira",sala: "07", link: "https://chat.whatsapp.com/Do1yMbi5QFSJdM1EjfXJWV" },
+                "NEYMARYS PAOLA CAMPISI PINA": { turma: "IV-G", professora: "Geisa Pereira",sala: "07", link: "https://chat.whatsapp.com/Do1yMbi5QFSJdM1EjfXJWV" },
+                "PEDRO LUCAS SIQUEIRA DE LIRA": { turma: "IV-G", professora: "Geisa Pereira",sala: "07", link: "https://chat.whatsapp.com/Do1yMbi5QFSJdM1EjfXJWV" },
+                "YOHANNA SOARES DE ALMEIDA": { turma: "IV-G", professora: "Geisa Pereira",sala: "07", link: "https://chat.whatsapp.com/Do1yMbi5QFSJdM1EjfXJWV" },
+                "YVANNA SOARES DE ALMEIDA": { turma: "IV-G", professora: "Geisa Pereira",sala: "07", link: "https://chat.whatsapp.com/Do1yMbi5QFSJdM1EjfXJWV" },
+                "MELINDA DA SILVA BORGES": { turma: "IV-G", professora: "Geisa Pereira",sala: "07", link: "https://chat.whatsapp.com/Do1yMbi5QFSJdM1EjfXJWV" },
+ 
+
+
+
+
+
+
+                 // Turma IV-H
+                "ÁGATHA VICTÓRIA PORTAL FARIAS": { turma: "IV-H", professora: "MARA CHRISTAL",sala: "08", link: "https://chat.whatsapp.com/By2u9Ct7BSeFJfBHz6EKeX" },
+                "ANTONNY LIMA DA SILVA": { turma: "IV-H", professora: "MARA CHRISTAL",sala: "08", link: "https://chat.whatsapp.com/By2u9Ct7BSeFJfBHz6EKeX" },
+                "ARTHUR BENJAMIN DO ROSÁRIO MARQUES": { turma: "IV-H", professora: "MARA CHRISTAL",sala: "08", link: "https://chat.whatsapp.com/By2u9Ct7BSeFJfBHz6EKeX" },
+                "DAVIER ISAAC SANCHEZ ARAY": { turma: "IV-H", professora: "MARA CHRISTAL",sala: "08", link: "https://chat.whatsapp.com/By2u9Ct7BSeFJfBHz6EKeX" },
+                "ELOAH BEATRIZ ARAUJO DO NASCIMENTO": { turma: "IV-H", professora: "MARA CHRISTAL",sala: "08", link: "https://chat.whatsapp.com/By2u9Ct7BSeFJfBHz6EKeX" },
+                "FLAVYO JOSUÉ OLIVEIRA DA SILVA": { turma: "IV-H", professora: "MARA CHRISTAL",sala: "08", link: "https://chat.whatsapp.com/By2u9Ct7BSeFJfBHz6EKeX" },
+                "GABRIEL HENRIQUE LIROMAR CORREIA DOS SANTOS": { turma: "IV-H", professora: "MARA CHRISTAL",sala: "08", link: "https://chat.whatsapp.com/By2u9Ct7BSeFJfBHz6EKeX" },
+                "GAHEL DAVID GOMEZ RAMOS": { turma: "IV-H", professora: "MARA CHRISTAL",sala: "08", link: "https://chat.whatsapp.com/By2u9Ct7BSeFJfBHz6EKeX" },
+                "HELENA VITÓRIA DOURADO SILVA": { turma: "IV-H", professora: "MARA CHRISTAL",sala: "08", link: "https://chat.whatsapp.com/By2u9Ct7BSeFJfBHz6EKeX" },
+                "HELOA MONTEIRO DOS SANTOS": { turma: "IV-H", professora: "MARA CHRISTAL",sala: "08", link: "https://chat.whatsapp.com/By2u9Ct7BSeFJfBHz6EKeX" },
+                "HEZEQUIEL DE AVIZ LOPES": { turma: "IV-H", professora: "MARA CHRISTAL",sala: "08", link: "https://chat.whatsapp.com/By2u9Ct7BSeFJfBHz6EKeX" },
+                "JOSFRANNY OSCARLY GIL RUIZ": { turma: "IV-H", professora: "MARA CHRISTAL",sala: "08", link: "https://chat.whatsapp.com/By2u9Ct7BSeFJfBHz6EKeX" },
+                "JULIA HELLOYSA AMORIM DE OLIVEIRA": { turma: "IV-H", professora: "MARA CHRISTAL",sala: "08", link: "https://chat.whatsapp.com/By2u9Ct7BSeFJfBHz6EKeX" },
+                "JÚLIA PONTES PRESTES": { turma: "IV-H", professora: "MARA CHRISTAL",sala: "08", link: "https://chat.whatsapp.com/By2u9Ct7BSeFJfBHz6EKeX" },
+                "KEVIN NOAH DE SOUZA ARAÚJO": { turma: "IV-H", professora: "MARA CHRISTAL",sala: "08", link: "https://chat.whatsapp.com/By2u9Ct7BSeFJfBHz6EKeX" },
+                "MADDELYN ESTER JIMENEZ VARGAS": { turma: "IV-H", professora: "MARA CHRISTAL",sala: "08", link: "https://chat.whatsapp.com/By2u9Ct7BSeFJfBHz6EKeX" },
+                "MARIA EDUARDA LISBOA FERREIRA": { turma: "IV-H", professora: "MARA CHRISTAL",sala: "08", link: "https://chat.whatsapp.com/By2u9Ct7BSeFJfBHz6EKeX" },
+                "MATEO ANDRES LIONEL VALDERREY ORDAZ": { turma: "IV-H", professora: "MARA CHRISTAL",sala: "08", link: "https://chat.whatsapp.com/By2u9Ct7BSeFJfBHz6EKeX" },
+                "SAMUEL DAVID VARGAS VALLES": { turma: "IV-H", professora: "MARA CHRISTAL",sala: "08", link: "https://chat.whatsapp.com/By2u9Ct7BSeFJfBHz6EKeX" },
+                "SARAH CRISTINA RODRIGUES MAIA": { turma: "IV-H", professora: "MARA CHRISTAL",sala: "08", link: "https://chat.whatsapp.com/By2u9Ct7BSeFJfBHz6EKeX" },
+                "THÉO RYAN BENTES XAVIER": { turma: "IV-H", professora: "MARA CHRISTAL",sala: "08", link: "https://chat.whatsapp.com/By2u9Ct7BSeFJfBHz6EKeX" },
+                "YAN GUSTTAVO RIBEIRO PARGA": { turma: "IV-H", professora: "MARA CHRISTAL",sala: "08", link: "https://chat.whatsapp.com/By2u9Ct7BSeFJfBHz6EKeX" },
+                "YASNAIA GABRIELLY MATOS FARIAS": { turma: "IV-H", professora: "MARA CHRISTAL",sala: "08", link: "https://chat.whatsapp.com/By2u9Ct7BSeFJfBHz6EKeX" },
+                "YSADORA CANTANHEDE PEREIRA": { turma: "IV-H", professora: "MARA CHRISTAL",sala: "08", link: "https://chat.whatsapp.com/By2u9Ct7BSeFJfBHz6EKeX" },
+                "YTALO MATHEUS ROCHA SOUSA": { turma: "IV-H", professora: "MARA CHRISTAL",sala: "08", link: "https://chat.whatsapp.com/By2u9Ct7BSeFJfBHz6EKeX" },
+
+
+
+
+
+
+                // Turma V-A
+                "ANA ALICE NASCIMENTO PEREIRA": { turma: "V-A", professora: "Fernanda Alves",sala: "01", link: "https://chat.whatsapp.com/CxHtNwLdL5G2QonOIvI5W4" },
+                "ARTHUR BENÍCIO SILVA CAVALCANTE": { turma: "V-A", professora: "Fernanda Alves",sala: "01", link: "https://chat.whatsapp.com/CxHtNwLdL5G2QonOIvI5W4" },
+                "DAVI LUCAS DE AGUIAR BARBOSA": { turma: "V-A", professora: "Fernanda Alves",sala: "01", link: "https://chat.whatsapp.com/CxHtNwLdL5G2QonOIvI5W4" },
+                "GEOVANA SILVA SOUSA": { turma: "V-A", professora: "Fernanda Alves",sala: "01", link: "https://chat.whatsapp.com/CxHtNwLdL5G2QonOIvI5W4" },
+                "IARLA HELOÁ DA CONCEIÇÃO ANDRADE": { turma: "V-A", professora: "Fernanda Alves",sala: "01", link: "https://chat.whatsapp.com/CxHtNwLdL5G2QonOIvI5W4" },
+                "JHONNAS MICKAEL DE MORAES SOUZA": { turma: "V-A", professora: "Fernanda Alves",sala: "01", link: "https://chat.whatsapp.com/CxHtNwLdL5G2QonOIvI5W4" },
+                "JOÃO MIGUEL ALVES XAVIER": { turma: "V-A", professora: "Fernanda Alves",sala: "01", link: "https://chat.whatsapp.com/CxHtNwLdL5G2QonOIvI5W4" },
+                "JÚLIA ANDRADE ROCHA DOS SANTOS": { turma: "V-A", professora: "Fernanda Alves",sala: "01", link: "https://chat.whatsapp.com/CxHtNwLdL5G2QonOIvI5W4" },
+                "KATHERINA HELENA PAES CRUZ": { turma: "V-A", professora: "Fernanda Alves",sala: "01", link: "https://chat.whatsapp.com/CxHtNwLdL5G2QonOIvI5W4" },
+                "LAURA KARINY EGUEZ DE OLIVEIRA": { turma: "V-A", professora: "Fernanda Alves",sala: "01", link: "https://chat.whatsapp.com/CxHtNwLdL5G2QonOIvI5W4" },
+                "LORENNA SOUSA GONÇALVES": { turma: "V-A", professora: "Fernanda Alves",sala: "01", link: "https://chat.whatsapp.com/CxHtNwLdL5G2QonOIvI5W4" },
+                "LUIZ GABRIEL NEVES DA SILVA": { turma: "V-A", professora: "Fernanda Alves",sala: "01", link: "https://chat.whatsapp.com/CxHtNwLdL5G2QonOIvI5W4" },
+                "MARIA VITÓRIA DRECHSLER DA SILVA": { turma: "V-A", professora: "Fernanda Alves",sala: "01", link: "https://chat.whatsapp.com/CxHtNwLdL5G2QonOIvI5W4" },
+                "MARIÁH ELOÍSE MARTINS DA SILVA": { turma: "V-A", professora: "Fernanda Alves",sala: "01", link: "https://chat.whatsapp.com/CxHtNwLdL5G2QonOIvI5W4" },
+                "MATEUS GABRIEL DA SILVA REIS": { turma: "V-A", professora: "Fernanda Alves",sala: "01", link: "https://chat.whatsapp.com/CxHtNwLdL5G2QonOIvI5W4" },
+                "MAYLA MARIA DA SILVA MORAES": { turma: "V-A", professora: "Fernanda Alves",sala: "01", link: "https://chat.whatsapp.com/CxHtNwLdL5G2QonOIvI5W4" },
+                "OTTO PIRES GOUVÊIA DOS SANTOS": { turma: "V-A", professora: "Fernanda Alves",sala: "01", link: "https://chat.whatsapp.com/CxHtNwLdL5G2QonOIvI5W4" },
+                "PIETRO YAUSHA CARDOSO MARINHO": { turma: "V-A", professora: "Fernanda Alves",sala: "01", link: "https://chat.whatsapp.com/CxHtNwLdL5G2QonOIvI5W4" },
+                "RAVI SILVA MAGALHÃES": { turma: "V-A", professora: "Fernanda Alves",sala: "01", link: "https://chat.whatsapp.com/CxHtNwLdL5G2QonOIvI5W4" },
+                "SAMUEL SANTOS SOARES": { turma: "V-A", professora: "Fernanda Alves",sala: "01", link: "https://chat.whatsapp.com/CxHtNwLdL5G2QonOIvI5W4" },
+                "VICENTE BREDA RODRIGUES DINIZ": { turma: "V-A", professora: "Fernanda Alves",sala: "01", link: "https://chat.whatsapp.com/CxHtNwLdL5G2QonOIvI5W4" },
+
+
+
+
+
+              
+               // Turma V-B
+                "ANNA ESTEFANIA VAZQUEZ PETRI": { turma: "V-B", professora: "Ana Lucia",sala: "02", link: "https://chat.whatsapp.com/IyG5kfIoGLX3JkhkDuX8Mj" },
+                "AYNOHA VALENTINA REYES FLORES": { turma: "V-B", professora: "Ana Lucia",sala: "02", link: "https://chat.whatsapp.com/IyG5kfIoGLX3JkhkDuX8Mj" },
+                "BRENDA DREILICH FANCK": { turma: "V-B", professora: "Ana Lucia",sala: "02", link: "https://chat.whatsapp.com/IyG5kfIoGLX3JkhkDuX8Mj" },
+                "DAVID CACIANO BISPO VIANA": { turma: "V-B", professora: "Ana Lucia",sala: "02", link: "https://chat.whatsapp.com/IyG5kfIoGLX3JkhkDuX8Mj" },
+                "EMILLY TAINÁ MORAES VITOR": { turma: "V-B", professora: "Ana Lucia",sala: "02", link: "https://chat.whatsapp.com/IyG5kfIoGLX3JkhkDuX8Mj" },
+                "GAEL OTTO GOMES SANTOS": { turma: "V-B", professora: "Ana Lucia",sala: "02", link: "https://chat.whatsapp.com/IyG5kfIoGLX3JkhkDuX8Mj" },
+                "GISLAINE VITÓRIA DE OLIVEIRA": { turma: "V-B", professora: "Ana Lucia",sala: "02", link: "https://chat.whatsapp.com/IyG5kfIoGLX3JkhkDuX8Mj" },
+                "HELOISA GABRIELLA CUNHA SANTOS": { turma: "V-B", professora: "Ana Lucia",sala: "02", link: "https://chat.whatsapp.com/IyG5kfIoGLX3JkhkDuX8Mj" },
+                "JADY SELENA GOMES MENDONÇA": { turma: "V-B", professora: "Ana Lucia",sala: "02", link: "https://chat.whatsapp.com/IyG5kfIoGLX3JkhkDuX8Mj" },
+                "JOAO PEDRO POLINSKI SIGNOR": { turma: "V-B", professora: "Ana Lucia",sala: "02", link: "https://chat.whatsapp.com/IyG5kfIoGLX3JkhkDuX8Mj" },
+                "JOÃO VITOR SANTOS RODRIGUES": { turma: "V-B", professora: "Ana Lucia",sala: "02", link: "https://chat.whatsapp.com/IyG5kfIoGLX3JkhkDuX8Mj" },
+                "LUNA GABRIELLY PASSOS SILVA": { turma: "V-B", professora: "Ana Lucia",sala: "02", link: "https://chat.whatsapp.com/IyG5kfIoGLX3JkhkDuX8Mj" },
+                "MARIA GABRIELLA DE LIMA SILVA": { turma: "V-B", professora: "Ana Lucia",sala: "02", link: "https://chat.whatsapp.com/IyG5kfIoGLX3JkhkDuX8Mj" },
+                "MATHEUS SANDRO RODRIGUES DA SILVA": { turma: "V-B", professora: "Ana Lucia",sala: "02", link: "https://chat.whatsapp.com/IyG5kfIoGLX3JkhkDuX8Mj" },
+                "RENATHA ESTEFANIA ARIAS MARQUEZ": { turma: "V-B", professora: "Ana Lucia",sala: "02", link: "https://chat.whatsapp.com/IyG5kfIoGLX3JkhkDuX8Mj" },
+                "SARAH VICTÓRIA LIMA ARAÚJO DA SILVA": { turma: "V-B", professora: "Ana Lucia",sala: "02", link: "https://chat.whatsapp.com/IyG5kfIoGLX3JkhkDuX8Mj" },
+                "VICTOR HUGO NATH ROSA": { turma: "V-B", professora: "Ana Lucia",sala: "02", link: "https://chat.whatsapp.com/IyG5kfIoGLX3JkhkDuX8Mj" },
+                "VINÍCIUS BIAZEBETTI RIBEIRO": { turma: "V-B", professora: "Ana Lucia",sala: "02", link: "https://chat.whatsapp.com/IyG5kfIoGLX3JkhkDuX8Mj" },
+                "GUILHERME SANTANA BARBOSA": { turma: "V-B", professora: "Ana Lucia",sala: "02", link: "https://chat.whatsapp.com/IyG5kfIoGLX3JkhkDuX8Mj" },
+                "LUIS MIGUEL RODRIGUES SILVA": { turma: "V-B", professora: "Ana Lucia",sala: "02", link: "https://chat.whatsapp.com/IyG5kfIoGLX3JkhkDuX8Mj" },
+
+
+
+
+
+
+               // Turma V-C
+                "ADRYAN RAFAEL BATISTA SOUSA": { turma: "V-C", professora: "Ana Paula",sala: "05", link: "https://chat.whatsapp.com/Gnts5n7Zx74H0ZT4pvWn81" },
+                "AGATHA HADASSA DE OLIVEIRA CORREA": { turma: "V-C", professora: "Ana Paula",sala: "05", link: "https://chat.whatsapp.com/Gnts5n7Zx74H0ZT4pvWn81" },
+                "ÁGATHA VALENTINA DOS SANTOS NASCIMENTO": { turma: "V-C", professora: "Ana Paula",sala: "05", link: "https://chat.whatsapp.com/Gnts5n7Zx74H0ZT4pvWn81" },
+                "ANA JULIA NASCIMENTO DOS SANTOS": { turma: "V-C", professora: "Ana Paula",sala: "05", link: "https://chat.whatsapp.com/Gnts5n7Zx74H0ZT4pvWn81" },
+                "ANA VITÓRIA CORREA DE SOUZA": { turma: "V-C", professora: "Ana Paula",sala: "05", link: "https://chat.whatsapp.com/Gnts5n7Zx74H0ZT4pvWn81" },
+                "DANIEL SILVA RODRIGUES": { turma: "V-C", professora: "Ana Paula",sala: "05", link: "https://chat.whatsapp.com/Gnts5n7Zx74H0ZT4pvWn81" },
+                "DAVID RAPHAEL HEINTZE PEDROZO": { turma: "V-C", professora: "Ana Paula",sala: "05", link: "https://chat.whatsapp.com/Gnts5n7Zx74H0ZT4pvWn81" },
+                "EMANUELLY VICTORIA ROSARIO DE MACEDO": { turma: "V-C", professora: "Ana Paula",sala: "05", link: "https://chat.whatsapp.com/Gnts5n7Zx74H0ZT4pvWn81" },
+                "GUILHERME HENRIQUE FERREIRA DA SILVA LIRA": { turma: "V-C", professora: "Ana Paula",sala: "05", link: "https://chat.whatsapp.com/Gnts5n7Zx74H0ZT4pvWn81" },
+                "JABEL SAMET FIGUERA FLORES": { turma: "V-C", professora: "Ana Paula",sala: "05", link: "https://chat.whatsapp.com/Gnts5n7Zx74H0ZT4pvWn81" },
+                "JARIUZ ANTONIO MARTINEZ BRITO": { turma: "V-C", professora: "Ana Paula",sala: "05", link: "https://chat.whatsapp.com/Gnts5n7Zx74H0ZT4pvWn81" },
+                "KENNEDY FERREIRA SIQUEIRA": { turma: "V-C", professora: "Ana Paula",sala: "05", link: "https://chat.whatsapp.com/Gnts5n7Zx74H0ZT4pvWn81" },
+                "KIARA SOUZA BRESSLER": { turma: "V-C", professora: "Ana Paula",sala: "05", link: "https://chat.whatsapp.com/Gnts5n7Zx74H0ZT4pvWn81" },
+                "MARIA TEREZA GOMES VIEIRA MELO": { turma: "V-C", professora: "Ana Paula",sala: "05", link: "https://chat.whatsapp.com/Gnts5n7Zx74H0ZT4pvWn81" },
+                "NICOLLAS JOSE OLIVEIRA DOS SANTOS": { turma: "V-C", professora: "Ana Paula",sala: "05", link: "https://chat.whatsapp.com/Gnts5n7Zx74H0ZT4pvWn81" },
+                "RAYARA LORRAYNE SANTOS RUEDIEGER": { turma: "V-C", professora: "Ana Paula",sala: "05", link: "https://chat.whatsapp.com/Gnts5n7Zx74H0ZT4pvWn81" },
+                "THALLYSSON LIMA DE SOUZA": { turma: "V-C", professora: "Ana Paula",sala: "05", link: "https://chat.whatsapp.com/Gnts5n7Zx74H0ZT4pvWn81" },
+                "THAYLA ROCHA MELO": { turma: "V-C", professora: "Ana Paula",sala: "05", link: "https://chat.whatsapp.com/Gnts5n7Zx74H0ZT4pvWn81" },
+                "WESLLEY CARLOS DE AVIZ GONÇALVES": { turma: "V-C", professora: "Ana Paula",sala: "05", link: "https://chat.whatsapp.com/Gnts5n7Zx74H0ZT4pvWn81" },
+                "HÁBIA HELOISA PEREIRA SILVA": { turma: "V-C", professora: "Ana Paula",sala: "05", link: "https://chat.whatsapp.com/Gnts5n7Zx74H0ZT4pvWn81" },
+
+
+
+
+
+
+
+                // Turma V-D
+                "ADRIELY BIATRIZ DA SILVA SILVA": { turma: "V-D", professora: "Marieli Aparecida",sala: "06", link: "https://chat.whatsapp.com/LDdsHx1l1Hb0eFpsoiRRd3" },
+                "ALANNA RIBEIRO NASCIMENTO": { turma: "V-D", professora: "Marieli Aparecida",sala: "06", link: "https://chat.whatsapp.com/LDdsHx1l1Hb0eFpsoiRRd3" },
+                "ANA HELISA DE JESUS DOS SANTOS": { turma: "V-D", professora: "Marieli Aparecida",sala: "06", link: "https://chat.whatsapp.com/LDdsHx1l1Hb0eFpsoiRRd3" },
+                "AYLLA VITORIA DA SILVA ROMERO": { turma: "V-D", professora: "Marieli Aparecida",sala: "06", link: "https://chat.whatsapp.com/LDdsHx1l1Hb0eFpsoiRRd3" },
+                "BENÍCIO BIAZEBETTI RIBEIRO": { turma: "V-D", professora: "Marieli Aparecida",sala: "06", link: "https://chat.whatsapp.com/LDdsHx1l1Hb0eFpsoiRRd3" },
+                "CELINA GOMES DA SILVA": { turma: "V-D", professora: "Marieli Aparecida",sala: "06", link: "https://chat.whatsapp.com/LDdsHx1l1Hb0eFpsoiRRd3" },
+                "DAVI DA SILVA SOUSA": { turma: "V-D", professora: "Marieli Aparecida",sala: "06", link: "https://chat.whatsapp.com/LDdsHx1l1Hb0eFpsoiRRd3" },
+                "DIANA LUCIA VILLARROEL RIVERO": { turma: "V-D", professora: "Marieli Aparecida",sala: "06", link: "https://chat.whatsapp.com/LDdsHx1l1Hb0eFpsoiRRd3" },
+                "EUDIMAR DEL CARMEN RENGEL BRITO": { turma: "V-D", professora: "Marieli Aparecida",sala: "06", link: "https://chat.whatsapp.com/LDdsHx1l1Hb0eFpsoiRRd3" },
+                "HEITOR VIANA DA SILVA MONTEIRO": { turma: "V-D", professora: "Marieli Aparecida",sala: "06", link: "https://chat.whatsapp.com/LDdsHx1l1Hb0eFpsoiRRd3" },
+                "HELENA SANTOS DA SILVA": { turma: "V-D", professora: "Marieli Aparecida",sala: "06", link: "https://chat.whatsapp.com/LDdsHx1l1Hb0eFpsoiRRd3" },
+                "HELOISA CORREA DE SÁ": { turma: "V-D", professora: "Marieli Aparecida",sala: "06", link: "https://chat.whatsapp.com/LDdsHx1l1Hb0eFpsoiRRd3" },
+                "LORENA LIMA DE SOUSA": { turma: "V-D", professora: "Marieli Aparecida",sala: "06", link: "https://chat.whatsapp.com/LDdsHx1l1Hb0eFpsoiRRd3" },
+                "MATHEUS FERRARINI COPATTI": { turma: "V-D", professora: "Marieli Aparecida",sala: "06", link: "https://chat.whatsapp.com/LDdsHx1l1Hb0eFpsoiRRd3" },
+                "MATHEUS HENRIQUE DE OLIVEIRA GONZAGA": { turma: "V-D", professora: "Marieli Aparecida",sala: "06", link: "https://chat.whatsapp.com/LDdsHx1l1Hb0eFpsoiRRd3" },
+                "MIGUEL DE SOUZA GARCIA": { turma: "V-D", professora: "Marieli Aparecida",sala: "06", link: "https://chat.whatsapp.com/LDdsHx1l1Hb0eFpsoiRRd3" },
+                "REBEKA HELENNA BRITO FEITOZA": { turma: "V-D", professora: "Marieli Aparecida",sala: "06", link: "https://chat.whatsapp.com/LDdsHx1l1Hb0eFpsoiRRd3" },
+                "VALENTINA ANTUNES DIAS": { turma: "V-D", professora: "Marieli Aparecida",sala: "06", link: "https://chat.whatsapp.com/LDdsHx1l1Hb0eFpsoiRRd3" },
+                "LEANDRO HENRIQUE ALVES CARVALHO": { turma: "V-D", professora: "Marieli Aparecida",sala: "06", link: "https://chat.whatsapp.com/LDdsHx1l1Hb0eFpsoiRRd3" },
+                "LIA KEVELLY ABREU DE SOUSA": { turma: "V-D", professora: "Marieli Aparecida",sala: "06", link: "https://chat.whatsapp.com/LDdsHx1l1Hb0eFpsoiRRd3" },
+                
+
+
+
+
+
+
+               // Turma V-E
+                "ABNER CARVALHO BAIA": { turma: "V-E", professora: "JESSICA FABRICIA",sala: "01", link: "https://chat.whatsapp.com/GC2jnxcX7n0D2mgsiuGNAU" },
+                "ABRAHAN MATEO COVA RUIZ": { turma: "V-E", professora: "JESSICA FABRICIA",sala: "01", link: "https://chat.whatsapp.com/GC2jnxcX7n0D2mgsiuGNAU" },
+                "ADRIELY FREITAS DA SILVA": { turma: "V-E", professora: "JESSICA FABRICIA",sala: "01", link: "https://chat.whatsapp.com/GC2jnxcX7n0D2mgsiuGNAU" },
+                "ALICE BEATRIZ LIRA DOS SANTOS": { turma: "V-E", professora: "JESSICA FABRICIA",sala: "01", link: "https://chat.whatsapp.com/GC2jnxcX7n0D2mgsiuGNAU" },
+                "ÂNGELO MIGUEL FERREIRA ALVES": { turma: "V-E", professora: "JESSICA FABRICIA",sala: "01", link: "https://chat.whatsapp.com/GC2jnxcX7n0D2mgsiuGNAU" },
+                "ANTONELLA DA SILVA FERREIRA": { turma: "V-E", professora: "JESSICA FABRICIA",sala: "01", link: "https://chat.whatsapp.com/GC2jnxcX7n0D2mgsiuGNAU" },
+                "APOLLO THEO LEITE VASCONCELOS": { turma: "V-E", professora: "JESSICA FABRICIA",sala: "01", link: "https://chat.whatsapp.com/GC2jnxcX7n0D2mgsiuGNAU" },
+                "ARTHUR VINICIUS DIAS SPAZAPAN": { turma: "V-E", professora: "JESSICA FABRICIA",sala: "01", link: "https://chat.whatsapp.com/GC2jnxcX7n0D2mgsiuGNAU" },
+                "ÁVILA CRISTINY DE JESUS BARROS": { turma: "V-E", professora: "JESSICA FABRICIA",sala: "01", link: "https://chat.whatsapp.com/GC2jnxcX7n0D2mgsiuGNAU" },
+                "DAVILLA LEONNA DA SILVA SANTANA NOGUEIRA": { turma: "V-E", professora: "JESSICA FABRICIA",sala: "01", link: "https://chat.whatsapp.com/GC2jnxcX7n0D2mgsiuGNAU" },
+                "ELOÁ VICTÓRIA REGO FARIAS": { turma: "V-E", professora: "JESSICA FABRICIA",sala: "01", link: "https://chat.whatsapp.com/GC2jnxcX7n0D2mgsiuGNAU" },
+                "ISABELLA CAROLINA PEREZ MORA": { turma: "V-E", professora: "JESSICA FABRICIA",sala: "01", link: "https://chat.whatsapp.com/GC2jnxcX7n0D2mgsiuGNAU" },
+                "JOÃO PEDRO ROCHA DOS SANTOS": { turma: "V-E", professora: "JESSICA FABRICIA",sala: "01", link: "https://chat.whatsapp.com/GC2jnxcX7n0D2mgsiuGNAU" },
+                "LIZ EMANUELLY PEREIRA SOUSA": { turma: "V-E", professora: "JESSICA FABRICIA",sala: "01", link: "https://chat.whatsapp.com/GC2jnxcX7n0D2mgsiuGNAU" },
+                "LOUISY JASMYM FREITAS MIRANDA": { turma: "V-E", professora: "JESSICA FABRICIA",sala: "01", link: "https://chat.whatsapp.com/GC2jnxcX7n0D2mgsiuGNAU" },
+                "LUCAS FELIPE DE MORAES MOREIRA": { turma: "V-E", professora: "JESSICA FABRICIA",sala: "01", link: "https://chat.whatsapp.com/GC2jnxcX7n0D2mgsiuGNAU" },
+                "MARIA HELENA SOARES WAKAO": { turma: "V-E", professora: "JESSICA FABRICIA",sala: "01", link: "https://chat.whatsapp.com/GC2jnxcX7n0D2mgsiuGNAU" },
+                "MURILO SILVA RODRIGUES": { turma: "V-E", professora: "JESSICA FABRICIA",sala: "01", link: "https://chat.whatsapp.com/GC2jnxcX7n0D2mgsiuGNAU" },
+                "PÂMELA ELOANE CONCEIÇÃO DOS REIS": { turma: "V-E", professora: "JESSICA FABRICIA",sala: "01", link: "https://chat.whatsapp.com/GC2jnxcX7n0D2mgsiuGNAU" },
+                "TALYSON MIGUEL FREITAS SILVA": { turma: "V-E", professora: "JESSICA FABRICIA",sala: "01", link: "https://chat.whatsapp.com/GC2jnxcX7n0D2mgsiuGNAU" },
+                "THOMAS PYETRO DOS SANTOS SILVA": { turma: "V-E", professora: "JESSICA FABRICIA",sala: "01", link: "https://chat.whatsapp.com/GC2jnxcX7n0D2mgsiuGNAU" },
+                "WALLACY GUILHERME ALVES FERREIRA": { turma: "V-E", professora: "JESSICA FABRICIA",sala: "01", link: "https://chat.whatsapp.com/GC2jnxcX7n0D2mgsiuGNAU" },
+
+
+
+
+
+
+               // Turma V-F
+               "ÁGATHA MAYSA DOS REIS COSTA": { turma: "V-F", professora: "Camila de Carli",sala: "02", link: "" },
+               "ANA LÍVIA SILVA DO NASCIMENTO": { turma: "V-F", professora: "Camila de Carli",sala: "02", link: "" },
+               "ANDRES ELIAS BELLO ECHARRI": { turma: "V-F", professora: "Camila de Carli",sala: "02", link: "" },
+               "ANNA LUÍSA NEVES PINHEIRO": { turma: "V-F", professora: "Camila de Carli",sala: "02", link: "" },
+               "ARTHUR ALVES DOS ANJOS": { turma: "V-F", professora: "Camila de Carli",sala: "02", link: "" },
+               "CAMILA VITÓRIA DA SILVA DE SOUZA": { turma: "V-F", professora: "Camila de Carli",sala: "02", link: "" },
+               "CARLOS GUILHERME NASCIMENTO DOS SANTOS": { turma: "V-F", professora: "Camila de Carli",sala: "02", link: "" },
+               "EIVER VALENTIN VARGAS CUSTODIO": { turma: "V-F", professora: "Camila de Carli",sala: "02", link: "" },
+               "ELOAH DE MENDONÇA COSTA": { turma: "V-F", professora: "Camila de Carli",sala: "02", link: "" },
+               "ENZO GABRIEL SOUSA DA SILVA": { turma: "V-F", professora: "Camila de Carli",sala: "02", link: "" },
+               "GABRIEL GONÇALVES PEREIRA": { turma: "V-F", professora: "Camila de Carli",sala: "02", link: "" },
+               "GIOVANA CUNHA ROCHA": { turma: "V-F", professora: "Camila de Carli",sala: "02", link: "" },
+               "ISABELLY GOMES BARBOSA": { turma: "V-F", professora: "Camila de Carli",sala: "02", link: "" },
+               "KYARA ARIELLY CORREA ALVES": { turma: "V-F", professora: "Camila de Carli",sala: "02", link: "" },
+               "LAURA VITORIA DO NASCIMENTO CHAVES": { turma: "V-F", professora: "Camila de Carli",sala: "02", link: "" },
+               "LORENZO LIMA MUNIZ": { turma: "V-F", professora: "Camila de Carli",sala: "02", link: "" },
+               "MAELLY KAUANY SOUSA SANTOS": { turma: "V-F", professora: "Camila de Carli",sala: "02", link: "" },
+               "MARIA CECILIA DO ROSARIO FONSECA": { turma: "V-F", professora: "Camila de Carli",sala: "02", link: "" },
+               "MIGUEL MARTINS DELLANI": { turma: "V-F", professora: "Camila de Carli",sala: "02", link: "" },
+               "RILLARY NATÁLIA DE MELO FERREIRA": { turma: "V-F", professora: "Camila de Carli",sala: "02", link: "" },
+               "SAMUEL ANTONIO FUENTES HERNANDEZ": { turma: "V-F", professora: "Camila de Carli",sala: "02", link: "" },
+               "THALLES GABRIEL TEIXEIRA BORCEM": { turma: "V-F", professora: "Camila de Carli",sala: "02", link: "" },
+
+
+
+
+
+               // Turma V-G
+               "ALICE MANUELA MAGALHÃES NASCIMENTO": { turma: "V-G", professora: "Daiane de Almeida",sala: "05", link: "" },
+               "ANTONY MIGUEL PEREIRA DA SILVA": { turma: "V-G", professora: "Daiane de Almeida",sala: "05", link: "" },
+               "AQUILES MORAIS FELIX": { turma: "V-G", professora: "Daiane de Almeida",sala: "05", link: "" },
+               "ARTHUR CAUÊ OLIVEIRA LIMA": { turma: "V-G", professora: "Daiane de Almeida",sala: "05", link: "" },
+               "ARTHUR GABRIEL DA SILVA CUNHA": { turma: "V-G", professora: "Daiane de Almeida",sala: "05", link: "" },
+               "CHRISTIAN JHARETH RODRIGUEZ NORIEGA": { turma: "V-G", professora: "Daiane de Almeida",sala: "05", link: "" },
+               "DIOGO GABRIEL BERNARDES COTA": { turma: "V-G", professora: "Daiane de Almeida",sala: "05", link: "" },
+               "ELOÁH PIETRA LIMA SOUSA": { turma: "V-G", professora: "Daiane de Almeida",sala: "05", link: "" },
+               "ESTER AYLLA DE OLIVEIRA GOMES": { turma: "V-G", professora: "Daiane de Almeida",sala: "05", link: "" },
+               "JESUS DAVID RIOS BARRIOS": { turma: "V-G", professora: "Daiane de Almeida",sala: "05", link: "" },
+               "JOÃO EMANUELL SILVA NASCIMENTO": { turma: "V-G", professora: "Daiane de Almeida",sala: "05", link: "" },
+               "JOAQUIM SIEBENEICHLER DOS SANTOS": { turma: "V-G", professora: "Daiane de Almeida",sala: "05", link: "" },
+               "KAUÃ SANTANA LIMA DE OLIVEIRA": { turma: "V-G", professora: "Daiane de Almeida",sala: "05", link: "" },
+               "KEVEN NAZARENO LOUREIRO NOBRE": { turma: "V-G", professora: "Daiane de Almeida",sala: "05", link: "" },
+               "LIVIA BANDEIRA DA SILVA": { turma: "V-G", professora: "Daiane de Almeida",sala: "05", link: "" },
+               "LORENZO MAIA LIMA": { turma: "V-G", professora: "Daiane de Almeida",sala: "05", link: "" },
+               "MOISES DE JESUS PRADO GUARIMAN": { turma: "V-G", professora: "Daiane de Almeida",sala: "05", link: "" },
+               "NICOLAS EMANOEL MIRANDA DO NASCIMENTO": { turma: "V-G", professora: "Daiane de Almeida",sala: "05", link: "" },
+               "NICOLLAS DAVI FERREIRA FRANCO": { turma: "V-G", professora: "Daiane de Almeida",sala: "05", link: "" },
+               "PIETRO LOPES REIS": { turma: "V-G", professora: "Daiane de Almeida",sala: "05", link: "" },
+               "SARAH RAQUEL BARBOSA ALVES": { turma: "V-G", professora: "Daiane de Almeida",sala: "05", link: "" },
+               "WITHALO LEVY DA SILVA COSTA": { turma: "V-G", professora: "Daiane de Almeida",sala: "05", link: "" },
+               "YOHANNA CRISTINNY CARDOSO MESQUITA": { turma: "V-G", professora: "Daiane de Almeida",sala: "05", link: "" },
+               
+
+
+            
+
+            // Turma V-H
+               "ADYLAN BRENO SILVA LIMA": { turma: "V-H", professora: "Fernanda Alves",sala: "06", link: "" },
+               "ANDREW HEITOR BORGES TAVARES": { turma: "V-H", professora: "Fernanda Alves",sala: "06", link: "" },
+               "ELORRAN RIQUELME DOS SANTOS ASSUNÇÃO": { turma: "V-H", professora: "Fernanda Alves",sala: "06", link: "" },
+               "EMÍLIA ANGELINA DA SILVA": { turma: "V-H", professora: "Fernanda Alves",sala: "06", link: "" },
+               "ENDREW GABRIEL BARACHO DA LUZ": { turma: "V-H", professora: "Fernanda Alves",sala: "06", link: "" },
+               "ENZO GAEL FERNANDES DA COSTA": { turma: "V-H", professora: "Fernanda Alves",sala: "06", link: "" },
+               "FABIANA ELIANA BLANCA CABEZA": { turma: "V-H", professora: "Fernanda Alves",sala: "06", link: "" },
+               "GAEL WALLACY CORRÊA ABREU": { turma: "V-H", professora: "Fernanda Alves",sala: "06", link: "" },
+               "GUSTTAVO HENRYQUE SILVA SOUSA": { turma: "V-H", professora: "Fernanda Alves",sala: "06", link: "" },
+               "HELOISA CARNEIRO PIZZARRO": { turma: "V-H", professora: "Fernanda Alves",sala: "06", link: "" },
+               "ISABELLA BARBOSA RODRIGUES": { turma: "V-H", professora: "Fernanda Alves",sala: "06", link: "" },
+               "JUAN FRANCISCO RIVAS CARDOZO": { turma: "V-H", professora: "Fernanda Alves",sala: "06", link: "" },
+               "KEMILLY LUIZA DIAS PAIVA": { turma: "V-H", professora: "Fernanda Alves",sala: "06", link: "" },
+               "KEYLLA SOPHIA DA SILVA SOARES": { turma: "V-H", professora: "Fernanda Alves",sala: "06", link: "" },
+               "MIGUEL CARVALHO": { turma: "V-H", professora: "Fernanda Alves",sala: "06", link: "" },
+               "MURILO DOS SANTOS BATALHA": { turma: "V-H", professora: "Fernanda Alves",sala: "06", link: "" },
+               "NOAH AMARAL FONSECA": { turma: "V-H", professora: "Fernanda Alves",sala: "06", link: "" },
+               "POLLYANNA MIRANDA BARBOSA": { turma: "V-H", professora: "Fernanda Alves",sala: "06", link: "" },
+               "SARA VICTORIA BARRETO VELASQUEZ": { turma: "V-H", professora: "Fernanda Alves",sala: "06", link: "" },
+               "THAYANE TAMYRES RIBEIRO DOS SANTOS": { turma: "V-H", professora: "Fernanda Alves",sala: "06", link: "" },
+               "WHEMELLY SAMANTHA COUTO CHAVES": { turma: "V-H", professora: "Fernanda Alves",sala: "06", link: "" },
+               "YSABELLA VASQUEZ MOTA": { turma: "V-H", professora: "Fernanda Alves",sala: "06", link: "" },
+               "DANIEL SILVA RODRIGUES": { turma: "V-H", professora: "Fernanda Alves",sala: "06", link: "" },
+            
+
+
+
+
+            "JONATHAN DE FREITAS RAMOS": { turma: "SECRETÁRIO ESCOLAR" },
+            "JANETE": { turma: "GESTORA ESCOLAR" },
+            "MARIA APARECIDA": { turma: "COORDENADORA PEDAGÓGICA" },
+
+
+            };
+            
+             if (listaNomes.hasOwnProperty(nomeDigitado)) {
+                var turmaInfo = listaNomes[nomeDigitado];
+                document.getElementById("turma-info").innerText = "Turma: " + turmaInfo.turma + "\nProfessora: " + turmaInfo.professora + "\nSala: " + turmaInfo.sala;
+                var modal = document.getElementById("modal");
+                var modalContent = document.querySelector(".modal-content");
+                modal.style.display = "block";
+                setTimeout(() => {
+                    modal.classList.add("show");
+                    modalContent.classList.add("show");
+                }, 50);
+                document.getElementById("resultado").innerHTML = "<a href='" + turmaInfo.link + "' target='_blank' style='color: #e67e22; font-size: 18px;'>Entrar no grupo do WhatsApp</a>";
+            } else {
+                document.getElementById("resultado").innerHTML = "<span style='color: red;'>Nome não encontrado.<br/> Digite o  Nome Completo<br/></span>";
+            }
+        }
+        function fecharModal() {
+            var modal = document.getElementById("modal");
+            var modalContent = document.querySelector(".modal-content");
+            modal.classList.remove("show");
+            modalContent.classList.remove("show");
+            setTimeout(() => {
+                modal.style.display = "none";
+            }, 500);
+        }
+    </script>
+</head>
+<body>
+    <div id="container">
+        <h2>NOME DO ALUNO</h2>
+        <input type="text" id="nome" placeholder="Digite o nome completo">
+        <button onclick="pesquisarNome()">Pesquisar</button>
+        <p id="resultado"></p>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal()">&times;</span>
+            <img src="https://th.bing.com/th/id/R.f771485eda791952505f0a2e5128b7da?rik=gCcyPdwxpa4ixw&riu=http%3a%2f%2facdn.mitiendanube.com%2fstores%2f001%2f630%2f548%2fproducts%2f8163d748fa20affb7b4b3e5d3c4fec31-db3559fa58c8e2024c16891863507887-640-0.jpg&ehk=tfx1MBH9z0Hd%2bG%2b7utVp9jEAPJ0WC4qQlzDTcKmRjR0%3d&risl=&pid=ImgRaw&r=0" alt="Pequeno Príncipe">
+            <p id="turma-info"></p>
+            <button onclick="fecharModal()">Fechar</button>
+        </div>
+    </div>
+</body>
+</html>
